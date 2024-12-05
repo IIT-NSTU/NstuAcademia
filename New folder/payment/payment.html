@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration Payment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Course Registration</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Payment Form -->
+    <div class="form-container">
+        <h1>Course Registration Payment</h1>
+        
+        <form id="paymentForm">
+            <!-- Fee Categories -->
+            <div class="form-group">
+                <p>Academic Fees</p>
+                <input type="number" id="academicFees" placeholder="Enter academic fees" required>
+            </div>
+            
+            <div class="form-group">
+                <p>Hall Fees</p>
+                <input type="number" id="hallFees" placeholder="Enter hall fees" required>
+            </div>
+            
+            <div class="form-group">
+                <p>Exam Fees</p>
+                <input type="number" id="examFees" placeholder="Enter exam fees" required>
+            </div>
+            
+            <!-- Total Amount Display -->
+            <div class="form-group">
+                <p>Total Amount:</p>
+                <span id="totalAmount">0 BDT</span>
+            </div>
+
+            <!-- Signatures -->
+            <div class="signatures">
+                <div class="signature">
+                    <img src="director-sign.png" alt="Director Signature">
+                    <p>Director</p>
+                </div>
+                <div class="signature">
+                    <img src="coordinator-sign.png" alt="Course Coordinator Signature">
+                    <p>Course Coordinator</p>
+                </div>
+                <div class="signature">
+                    <img src="provost-sign.png" alt="Hall Provost Signature">
+                    <p>Hall Provost</p>
+                </div>
+            </div>
+
+            <!-- Pay to Proceed Button -->
+            <button type="button" onclick="proceedToPayment()">Pay to Proceed</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
