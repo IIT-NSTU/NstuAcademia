@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall Booking System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+    <!-- Navbar -->
+    <header class="w-full fixed top-0 z-10 bg-white shadow">
+        <div class="text-center py-4 bg-gray-100">
+            <h1 class="text-3xl font-bold text-gray-800">NstuAcademia</h1>
+            <p class="text-sm text-gray-600">A Hassle-Free System for University Students</p>
+        </div>
+        <nav class="bg-blue-800 text-white">
+            <ul class="flex justify-center gap-6 py-3 text-lg font-medium">
+                <li><a href="#" class="hover:underline">Home</a></li>
+                <li><a href="#" class="hover:underline">About Us</a></li>
+                <li><a href="#" class="hover:underline">Course Registration Notice</a></li>
+                <li><a href="#" class="hover:underline">Hall Seat Notice</a></li>
+                <li><a href="#" class="hover:underline">Departments</a></li>
+                <li><a href="#" class="hover:underline">Events</a></li>
+                <li><a href="#" class="hover:underline">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Booking System -->
+    <main class="mt-32 w-11/12 lg:w-2/3 bg-white rounded-lg shadow-lg p-6">
+        <h1 class="text-2xl font-bold text-center mb-6 text-gray-800">Select Your Room</h1>
+        <div class="space-y-4">
+            <!-- Hall Selector -->
+            <select id="hallSelect" onchange="updateFloors()" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300">
+                <option value="">Select Hall</option>
+                <option value="Bangamata Sheikh Fazilatunnesa Mujib Hall">Bangamata Sheikh Fazilatunnesa Mujib Hall</option>
+                <option value="Bangabandhu Sheikh Mujibur Rahman Hall">Bangabandhu Sheikh Mujibur Rahman Hall</option>
+                <option value="Bibi Khadiza Hall">Bibi Khadiza Hall</option>
+                <option value="Abdus Salam Hall">Abdus Salam Hall</option>
+                <option value="Abdul Malek Ukil Hall">Abdul Malek Ukil Hall</option>
+            </select>
+
+            <!-- Floor Selector -->
+            <select id="floorSelect" onchange="updateRooms()" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300">
+                <option value="">Select Floor</option>
+            </select>
+
+            <!-- Room Selector -->
+            <select id="roomSelect" onchange="updateRoomLayout()" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring focus:ring-blue-300">
+                <option value="">Select Room</option>
+            </select>
+        </div>
+
+        <!-- Room Layout -->
+        <div id="roomLayout" class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <!-- Bed layout will be dynamically populated here -->
+        </div>
+    </main>
+
+    <script>
+        const floorRooms = {
+            "Bangamata Sheikh Fazilatunnesa Mujib Hall": {
+                "1": ["101", "102", "103", "104", "105", "106", "107", "108", "109", "110"],
+                "2": ["201", "202", "203", "204", "205", "206", "207", "208", "209", "210"],
+                "3": ["301", "302", "303", "304", "305", "306", "307", "308", "309", "310"],
+                "4": ["401", "402", "403", "404", "405", "406", "407", "408", "409", "410"],
+                "5": ["501", "502", "503", "504", "505", "506", "507", "508", "509", "510"]
+            },
+            "Bangabandhu Sheikh Mujibur Rahman Hall": {
+                "1": ["101", "102", "103", "104", "105", "106", "107", "108", "109", "110"],
+                "2": ["201", "202", "203", "204", "205", "206", "207", "208", "209", "210"],
+                "3": ["301", "302", "303", "304", "305", "306", "307", "308", "309", "310"],
+                "4": ["401", "402", "403", "404", "405", "406", "407", "408", "409", "410"],
+                "5": ["501", "502", "503", "504", "505", "506", "507", "508", "509", "510"]
+            },
+            "Bibi Khadiza Hall": {
+                "1": ["101", "102", "103", "104", "105", "106", "107", "108", "109", "110"],
+                "2": ["201", "202", "203", "204", "205", "206", "207", "208", "209", "210"],
+                "3": ["301", "302", "303", "304", "305", "306", "307", "308", "309", "310"],
+                "4": ["401", "402", "403", "404", "405", "406", "407", "408", "409", "410"],
+                "5": ["501", "502", "503", "504", "505", "506", "507", "508", "509", "510"]
+            },
+            "Abdus Salam Hall": {
+                "1": ["101", "102", "103", "104", "105", "106", "107", "108", "109", "110"],
+                "2": ["201", "202", "203", "204", "205", "206", "207", "208", "209", "210"],
+                "3": ["301", "302", "303", "304", "305", "306", "307", "308", "309", "310"],
+                "4": ["401", "402", "403", "404", "405", "406", "407", "408", "409", "410"],
+                "5": ["501", "502", "503", "504", "505", "506", "507", "508", "509", "510"]
+            },
+            "Abdul Malek Ukil Hall": {
+                "1": ["101", "102", "103", "104", "105", "106", "107", "108", "109", "110"],
+                "2": ["201", "202", "203", "204", "205", "206", "207", "208", "209", "210"],
+                "3": ["301", "302", "303", "304", "305", "306", "307", "308", "309", "310"],
+                "4": ["401", "402", "403", "404", "405", "406", "407", "408", "409", "410"],
+                "5": ["501", "502", "503", "504", "505", "506", "507", "508", "509", "510"]
+            },
+          
+        };
+        
+
+        const bedAvailability = {
+            "101": [true, false, true, true, false, true, true],
+            "102": [true, true, true, false, true, true, false],
+            "103": [true, true, false, true, true, false, true],
+            "104": [false, true, true, true, false, true, false],
+            "105": [true, false, true, false, true, true, true],
+            "106": [true, true, true, true, false, false, true],
+            "107": [false, true, false, true, true, true, false],
+            "108": [true, false, true, true, true, true, false],
+            "109": [true, true, false, false, true, false, true],
+            "110": [true, true, true, true, true, true, true],
+        
+            // For Floor 2
+            "201": [true, true, false, true, false, true, true],
+            "202": [false, true, true, true, true, false, true],
+            "203": [true, true, true, false, true, false, true],
+            "204": [false, false, true, true, true, true, false],
+            "205": [true, false, true, true, true, true, true],
+            "206": [true, true, true, true, false, true, true],
+            "207": [true, false, false, true, true, true, true],
+            "208": [false, true, true, true, true, false, false],
+            "209": [true, true, true, false, false, true, true],
+            "210": [false, false, true, true, true, true, false],
+        
+            // For Floor 3
+            "301": [true, true, true, false, true, true, true],
+            "302": [false, true, true, true, false, true, true],
+            "303": [true, false, true, true, true, false, false],
+            "304": [true, true, false, false, true, true, true],
+            "305": [true, true, true, true, false, true, false],
+            "306": [false, true, true, true, true, true, false],
+            "307": [true, true, false, true, true, true, true],
+            "308": [true, false, true, false, true, true, true],
+            "309": [true, true, true, true, true, false, false],
+            "310": [false, true, true, true, false, true, true],
+        
+            // For Floor 4
+            "401": [true, true, true, true, true, false, true],
+            "402": [false, true, false, true, true, true, true],
+            "403": [true, true, true, true, false, true, true],
+            "404": [true, false, true, true, true, false, true],
+            "405": [false, true, false, true, true, true, false],
+            "406": [true, true, true, true, true, false, true],
+            "407": [true, false, true, false, true, true, true],
+            "408": [true, true, false, true, true, true, false],
+            "409": [true, true, true, true, false, true, true],
+            "410": [false, true, true, false, true, true, false],
+        
+            // For Floor 5
+            "501": [true, false, true, true, false, true, true],
+            "502": [true, true, true, false, true, true, false],
+            "503": [false, true, true, true, true, false, true],
+            "504": [true, true, false, true, false, true, false],
+            "505": [true, false, true, false, true, true, true],
+            "506": [true, true, true, true, false, false, true],
+            "507": [false, true, false, true, true, true, false],
+            "508": [true, false, true, true, true, true, false],
+            "509": [true, true, false, false, true, false, true],
+            "510": [true, true, true, true, true, true, true]
+        };
+        
+
+        function updateFloors() {
+            const hallSelect = document.getElementById("hallSelect");
+            const floorSelect = document.getElementById("floorSelect");
+            const selectedHall = hallSelect.value;
+            floorSelect.innerHTML = "<option value=''>Select Floor</option>";
+
+            if (selectedHall && floorRooms[selectedHall]) {
+                Object.keys(floorRooms[selectedHall]).forEach(floor => {
+                    floorSelect.innerHTML += `<option value="${floor}">Floor ${floor}</option>`;
+                });
+            }
+        }
+
+        function updateRooms() {
+            const hallSelect = document.getElementById("hallSelect");
+            const floorSelect = document.getElementById("floorSelect");
+            const roomSelect = document.getElementById("roomSelect");
+            const selectedHall = hallSelect.value;
+            const selectedFloor = floorSelect.value;
+            roomSelect.innerHTML = "<option value=''>Select Room</option>";
+
+            if (selectedHall && selectedFloor && floorRooms[selectedHall]) {
+                floorRooms[selectedHall][selectedFloor].forEach(room => {
+                    roomSelect.innerHTML += `<option value="${room}">Room ${room}</option>`;
+                });
+            }
+        }
+
+        function updateRoomLayout() {
+            const roomLayout = document.getElementById("roomLayout");
+            roomLayout.innerHTML = "";
+
+            for (let i = 1; i <= 6; i++) {
+                roomLayout.innerHTML += `
+                    <div class="bed flex items-center justify-center w-24 h-24 rounded bg-blue-300 text-white font-bold">
+                        Bed ${i}
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

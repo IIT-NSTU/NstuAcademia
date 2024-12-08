@@ -1,0 +1,94 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar Styles */
+.bg-university-blue {
+    background-color: #003366;
+    padding: 15px 0;
+}
+
+.container-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links li a:hover {
+    color: #ddd;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.custom-input {
+    padding: 5px;
+    border: none;
+    border-radius: 3px 0 0 3px;
+}
+
+.custom-button {
+    background-color: #555;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Main Content Styles */
+.container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+h1 {
+    color: #003366;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+th {
+    background-color: #003366;
+    color: white;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    color: white;
+    background-color: #003366;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #002244;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="bg-university-blue">
+    <div class="container-nav">
+        <ul class="nav-links">
+            <li><a href="#" class="text-white">Home</a></li>
+            <li><a href="#" class="text-white">About Us</a></li>
+            <li><a href="#" class="text-white">Course Registration Notice</a></li>
+            <li><a href="#" class="text-white">Hall Seat Notice</a></li>
+            <li><a href="#" class="text-white">Departments</a></li>
+            <li><a href="#" class="text-white">Events</a></li>
+            <li><a href="#" class="text-white">Contact</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" placeholder="Search..." class="custom-input">
+            <button class="custom-button">
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 10-14 0 7 7 0 0014 0z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Attendance Table -->
+    <div class="container">
+        <h1>Student Attendance</h1>
+        <table>
+            <tr>
+                <th>Sl</th>
+                <th>Course Code</th>
+                <th>Stipulated No. of Classes</th>
+                <th>No. of Classes Held</th>
+                <th>No. of Classes Attended</th>
+            </tr>
+            <tr>
+                <td>01</td><td>SE 3101</td><td>39</td><td>38</td><td>38</td>
+            </tr>
+            <tr>
+                <td>02</td><td>CSE 3103</td><td>13</td><td>11</td><td>11</td>
+            </tr>
+            <tr>
+                <td>03</td><td>CSE 3109</td><td>52</td><td>48</td><td>48</td>
+            </tr>
+            <tr>
+                <td>04</td><td>CSE 3105</td><td>13</td><td>13</td><td>13</td>
+            </tr>
+            <tr>
+                <td>05</td><td>CSE 3106</td><td>52</td><td>46</td><td>46</td>
+            </tr>
+            <tr>
+                <td>06</td><td>BUS 3107</td><td>26</td><td>26</td><td>26</td>
+            </tr>
+            <tr>
+                <td>07</td><td>BUS 3108</td><td>26</td><td>26</td><td>26</td>
+            </tr>
+            <tr>
+                <td>08</td><td>SE 3109</td><td>26</td><td>26</td><td>26</td>
+            </tr>
+            <tr>
+                <td>09</td><td>SE 3110</td><td>26</td><td>24</td><td>24</td>
+            </tr>
+            <tr>
+                <td>10</td><td>SE 3112</td><td>78</td><td>74</td><td>74</td>
+            </tr>
+        </table>
+        <button onclick="calculateAttendance()">Calculate Attendance Percentage</button>
+        <p id="attendanceResult"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
